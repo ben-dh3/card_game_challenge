@@ -25,30 +25,20 @@ class Card():
         return self.players_hand
     
     def play_cards(self,p1_choice,p2_choice,p3_choice,p4_choice=None,):
+        for player,hand in self.players_hand.items():
+            if 'C2' in hand:
+                self.played_cards[player]='C2'
+            else:
+                for suit in hand:
+                    if suit[0]!='C':
+                        self.played_cards[player]=suit
+                    if suit[0]== 'C':
+                        self.played_cards[player]=suit
+                        break
 
-        if p1_choice in self.players_hand['player1']:
-            self.played_cards['player1']=p1_choice
-        elif p1_choice not in self.players_hand['player1']:
-            self.played_cards['player1']=self.players_hand['player1'][0]
-            
-        if p2_choice in self.players_hand['player2']:    
-            self.played_cards['player2']=p2_choice
-        elif p2_choice not in self.players_hand['player2']:
-            self.played_cards['player2']=self.players_hand['player2'][0]
-
-        if p3_choice in self.players_hand['player3']:
-            self.played_cards['player3']=p3_choice
-        elif p3_choice not in self.players_hand['player3']:
-            self.played_cards['player3']=self.players_hand['player3'][0]  
-
-        if p4_choice:  
-            if p4_choice in self.players_hand['player4']:
-                self.played_cards['player4']=p4_choice
-            elif p4_choice not in self.players_hand['player4']:
-                self.played_cards['player4']=self.players_hand['player4'][0]    
         return self.played_cards
     
 card=Card()
-print(card.shuffle())
+card.shuffle()
 print(card.deal(4))
 print(card.play_cards('C6','C7','H9','C9'))
