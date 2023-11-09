@@ -35,7 +35,7 @@ class Card():
                     if suit[0]== 'C':
                         self.played_cards[player]=suit
                         break
-
+ 
         return self.played_cards
     
 card=Card()
